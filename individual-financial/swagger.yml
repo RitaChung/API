@@ -12,11 +12,11 @@ basePath: "/api"
 
 # Paths supported by the server application
 paths:
-  /transactions:
+  /all_transactions:
     get:
-      operationId: "transactions.read"
+      operationId: "service.all_transaction"
       tags:
-        - "Transaction"
+        - "Population"
       summary: "Financial transaction data structure supported by the server application"
       description: "Read the list of transaction"
       responses:
@@ -43,14 +43,19 @@ paths:
                 transactionTime:
                   type: "string"
 
-paths:
   /transactions:
     get:
-      operationId: "transactions.read"
+      operationId: "service.one_transaction"
       tags:
-        - "Transaction"
-      summary: "Financial transaction data structure supported by the server application"
-      description: "Read the list of transaction"
+        - "Personal"
+      summary: "Financial transaction for individual"
+      description: "Read the list of transaction from query identifier"
+      parameters:
+        - name: ID
+          in: query
+          description: "ID name of the account to get from the list"
+          type: "string"
+          required: True
       responses:
         200:
           description: "Successful read transaction list operation"
@@ -73,4 +78,137 @@ paths:
                 source:
                   type: "string"
                 transactionTime:
+                  type: "string"
+
+  /transactions/category:
+    get:
+      operationId: "service.one_transaction_by_category"
+      tags:
+        - "Personal"
+      summary: "Financial transaction for individual by category"
+      description: "Read the list of transaction from query identifier"
+      parameters:
+        - name: ID
+          in: query
+          description: "ID name of the account to get from the list"
+          type: "string"
+          required: True
+
+        - name: category
+          in: query
+          description: "Search the transactions by categroy"
+          type: "string"
+          required: True
+
+      responses:
+        200:
+          description: "Successful read transaction list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                identifier:
+                  type: "string"
+                transactionDate:
+                  type: "string"
+                currency:
+                  type: "string"
+                amount:
+                  type: "string"
+                direction:
+                  type: "string"
+                category:
+                  type: "string"
+                source:
+                  type: "string"
+                transactionTime:
+                  type: "string"
+
+
+  /balance/all_month:
+    get:
+      operationId: "service.financial_balance_monthly"
+      tags:
+        - "Personal"
+      summary: "Personal financial balance monthly"
+      description: "Search for the debit and credit balance monthly"
+      parameters:
+        - name: ID
+          in: query
+          description: "ID name of the account to get from the list"
+          type: "string"
+          required: True
+      responses:
+        200:
+          description: "Successful read transaction list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                currency:
+                  type: "string"
+                amount:
+                  type: "string"
+                direction:
+                  type: "string"
+
+  /balance/unq_month:
+    get:
+      operationId: "service.financial_balance_unq_month"
+      tags:
+        - "Personal"
+      summary: "Personal financial balance unique month"
+      description: "Search for the debit and credit balance"
+      parameters:
+        - name: ID
+          in: query
+          description: "ID name of the account to get from the list"
+          type: "string"
+          required: True
+
+        - name: transactionTime
+          in: query
+          description: "Search transactionTime monthly"
+          type: "string"
+          required: True
+      responses:
+        200:
+          description: "Successful read transaction list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                currency:
+                  type: "string"
+                amount:
+                  type: "string"
+                direction:
+                  type: "string"
+
+
+  /category/salary:
+    get:
+      operationId: "service.one_transaction_for_salary"
+      tags:
+        - "Personal"
+      summary: "Personal salary transaction statistics"
+      description: "Search for the transaction for the category for salary"
+      parameters:
+        - name: ID
+          in: query
+          description: "ID name of the account to get from the list"
+          type: "string"
+          required: True
+      responses:
+        200:
+          description: "Successful read transaction list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                transactionTime:
+                  type: "string"
+                amount:
+                  type: "string"
+                num_of_transaction:
                   type: "string"

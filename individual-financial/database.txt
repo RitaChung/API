@@ -1,5 +1,4 @@
-##key = transactionID
-transactions = {
+{
     '0001':{
         'identifier': 'AE020330000000693123456',
         'transactionDate': '2020-10-18 09:10:27',
@@ -78,7 +77,7 @@ transactions = {
         'direction': 'Credit',
         'category': 'Salary',
         'source': 'FTS',
-        'transactionTime': '202009'
+        'transactionTime': '202010'
         },
     '0009':{
         'identifier': 'AE020330000000693123456',
@@ -90,7 +89,7 @@ transactions = {
         'source': 'ICCS',
         'transactionTime': '202009'
         },
-    '0009':{
+    '0010':{
         'identifier': '4592674851642579',
         'transactionDate': '2020-10-04 16:17:45',
         'currency': 'AED',
@@ -99,8 +98,25 @@ transactions = {
         'category': 'POS',
         'source': 'FTS',
         'transactionTime': '202010'
+        },
+    '0011':{
+        'identifier': 'AE020330000000693123456',
+        'transactionDate': '2020-09-014 15:10:46',
+        'currency': 'AED',
+        'amount': 1021,
+        'direction': 'Credit',
+        'category': 'POS',
+        'source': 'FTS',
+        'transactionTime': '202009'
+        },
+    '0012':{
+        'identifier': 'AE020330000000693123456',
+        'transactionDate': '2020-09-27 15:09:45',
+        'currency': 'AED',
+        'amount': 4500,
+        'direction': 'Credit',
+        'category': 'Salary',
+        'source': 'FTS',
+        'transactionTime': '202009'
         }
     }
-
-def read():
-    return [transactions[key] for key in sorted(transactions.keys())]
