@@ -118,5 +118,15 @@
         'category': 'Salary',
         'source': 'FTS',
         'transactionTime': '202009'
+        },
+    '0013':{
+        'identifier': 'AE020330000000693123456',
+        'transactionDate': '2020-10-15 10:19:35',
+        'currency': 'AED',
+        'amount': 1500,
+        'direction': 'Debit',
+        'category': 'Salary',
+        'source': 'FTS',
+        'transactionTime': '202010'
         }
     }

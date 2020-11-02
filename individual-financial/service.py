@@ -57,17 +57,19 @@ def one_transaction_for_salary(ID="AE020330000000693123456"):
     trans = []
     cur = {}
     for sub in transactions.values():
-        if sub["identifier"] == ID and sub["category"] == "Salary" and sub["direction"] == "Credit":
-            if sub["transactionTime"] not in cur.keys():
-                cur[sub["transactionTime"]] = {"amount": float(sub["amount"]),
-                                               "num_of_event": 1}
+        if sub["identifier"] == ID and sub["category"] == "Salary":
+            tag = "-".join([sub["transactionTime"], sub["direction"], sub["currency"]])
+            if tag not in  cur.keys():
+                cur[tag] = {"amount": float(sub["amount"]),
+                            "num_of_event": 1}
             else:
-                cur[sub["transactionTime"]]["amount"] += float(sub["amount"])
-                cur[sub["transactionTime"]]["num_of_event"] += 1
+                cur[tag]["amount"] = cur[tag]["amount"] + float(sub["amount"])
+                cur[tag]["num_of_event"] += 1
     for item in cur:
-        trans.append({"transactionTime": item,
+        trans.append({"transactionTime": item.split("-")[0],
+                      "direction": item.split("-")[1],
+                      "currency":item.split("-")[2],
                       "amount": cur[item]["amount"],
                       "num_of_transaction": cur[item]["num_of_event"]})
     return trans
-
 

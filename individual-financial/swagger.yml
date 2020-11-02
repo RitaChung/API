@@ -212,3 +212,7 @@ paths:
                   type: "string"
                 num_of_transaction:
                   type: "string"
+                currency:
+                  type: "string"
+                direction:
+                  type: "string"
