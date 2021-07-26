@@ -1,4 +1,4 @@
-# install steps
+# install steps (offline version)
 
 1. git clone https://github.com/RitaChung/API.git and access into arabic_named_entity_recognition
 2. docker build -f Dockerfile -t arabic_named_entity_recognition_api:0.0.1 .
